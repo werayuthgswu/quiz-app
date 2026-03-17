@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz App</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .quiz { border: 1px solid #ddd; padding: 20px; margin: 10px 0; }
+    .btn { background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; }
+    .btn:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <h1>Quiz Management</h1>
+  <a href="/quiz/new" class="btn">Create New Quiz</a>
+  
+  <h2>Existing Quizzes</h2>
+  <% if (quizzes.length === 0) { %>
+    <p>No quizzes created yet.</p>
+  <% } else { %>
+    <% quizzes.forEach(quiz => { %>
+      <div class="quiz">
+        <h3><%= quiz.title %></h3>
+        <p>Questions: <%= quiz.questions.length %></p>
+        <a href="/quiz/<%= quiz.id %>" class="btn">Manage Quiz</a>
+      </div>
+    <% }) %>
+  <% } %>
+</body>
+</html>

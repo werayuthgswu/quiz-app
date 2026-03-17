@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= quiz.title %></title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .question { border: 1px solid #ddd; padding: 15px; margin: 10px 0; }
+    .btn { background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; margin: 5px; }
+    .btn:hover { background: #0056b3; }
+    .correct { color: green; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1><%= quiz.title %></h1>
+  <a href="/quiz/<%= quiz.id %>/question/new" class="btn">Add Question</a>
+  <a href="/">Back to Home</a>
+  
+  <h2>Questions (<%= quiz.questions.length %>)</h2>
+  <% if (quiz.questions.length === 0) { %>
+    <p>No questions added yet.</p>
+  <% } else { %>
+    <% quiz.questions.forEach(question => { %>
+      <div class="question">
+        <h3><%= question.text %></h3>
+        <ol>
+          <% question.options.forEach((option, index) => { %>
+            <li <% if (index === question.correct) { %>class="correct"<% } %>>
+              <%= option %>
+            </li>
+          <% }) %>
+        </ol>
+      </div>
+    <% }) %>
+  <% } %>
+</body>
+</html>
